@@ -232,7 +232,7 @@ juce::AudioProcessorValueTreeState::ParameterLayout SimpleEQAudioProcessor::crea
                                                            juce::NormalisableRange<float>(20.f,
                                                                                           20000.f,
                                                                                           1.f,
-                                                                                          1.f),
+                                                                                          0.25f),
                                                                                           20.f));
 
     layout.add(std::make_unique<juce::AudioParameterFloat>("HighCut Freq",
@@ -240,7 +240,7 @@ juce::AudioProcessorValueTreeState::ParameterLayout SimpleEQAudioProcessor::crea
                                                            juce::NormalisableRange<float>(20.f,
                                                                                           20000.f,
                                                                                           1.f,
-                                                                                          1.f),
+                                                                                          0.25f),
                                                                                           20000.f));
 
     layout.add(std::make_unique<juce::AudioParameterFloat>("Peak Freq",
@@ -248,7 +248,7 @@ juce::AudioProcessorValueTreeState::ParameterLayout SimpleEQAudioProcessor::crea
                                                            juce::NormalisableRange<float>(20.f,
                                                                                           20000.f,
                                                                                           1.f,
-                                                                                          1.f),
+                                                                                          0.25f),
                                                                                           750.f));
     layout.add(std::make_unique<juce::AudioParameterFloat>("Peak Gain",
                                                            "Peak Gain",
@@ -267,7 +267,7 @@ juce::AudioProcessorValueTreeState::ParameterLayout SimpleEQAudioProcessor::crea
                                                                                           1.f));
 
     juce::StringArray stringArray;
-    for (int i = 0; i < 4; i++) {
+    for (int i = 0; i < 4; ++i) {
         juce::String str;
         str << (12 + i*12);
         str << " db/Oct";

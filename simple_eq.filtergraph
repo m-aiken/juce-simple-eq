@@ -16,21 +16,6 @@
       </OUTPUTS>
     </LAYOUT>
   </FILTER>
-  <FILTER uid="2" x="0.07916666666666666" y="0.1344262295081967">
-    <PLUGIN name="MIDI Input" descriptiveName="" format="Internal" category="I/O devices"
-            manufacturer="JUCE" version="1.0" file="" uniqueId="a9e4f9eb"
-            isInstrument="0" fileTime="0" infoUpdateTime="0" numInputs="0"
-            numOutputs="0" isShell="0" uid="a9e4f9eb"/>
-    <STATE>0.</STATE>
-    <LAYOUT>
-      <INPUTS>
-        <BUS index="0" layout="disabled"/>
-      </INPUTS>
-      <OUTPUTS>
-        <BUS index="0" layout="disabled"/>
-      </OUTPUTS>
-    </LAYOUT>
-  </FILTER>
   <FILTER uid="3" x="0.5" y="0.9">
     <PLUGIN name="Audio Output" descriptiveName="" format="Internal" category="I/O devices"
             manufacturer="JUCE" version="1.0" file="" uniqueId="724248cb"
@@ -61,11 +46,11 @@
       </OUTPUTS>
     </LAYOUT>
   </FILTER>
-  <FILTER uid="5" x="0.4958333333333333" y="0.5027322404371585" uiLastX_Normal="960"
-          uiLastY_Normal="0" uiopen_Normal="0">
+  <FILTER uid="5" x="0.4416666666666667" y="0.5027322404371585" uiLastX_Normal="0"
+          uiLastY_Normal="24" uiopen_Normal="0">
     <PLUGIN name="SimpleEQ" format="VST3" category="Fx" manufacturer="yourcompany"
             version="1.0.0" file="/home/mattaiken/.vst3/SimpleEQ.vst3" uniqueId="5a6dae7"
-            isInstrument="0" fileTime="17bb62a2af0" infoUpdateTime="17bc659cdf5"
+            isInstrument="0" fileTime="17bb62a2af0" infoUpdateTime="17bda314b13"
             numInputs="2" numOutputs="2" isShell="0" uid="acfdda74"/>
     <STATE>191.VMjLgXK....O+fWarAhckI2bo8la8HRLt.iHfTlai8FYo41Y8HRUTYTK3HxO9.BOVMEUy.Ea0cVZtMEcgQWY9vSRC8Vav8lak4Fc9XCLt3hKt3hKt3hKt3hYRUUSTEETIckVwTjQisVTTgkdEYjKAQjYPQSPWgUdMcjKAQjct3hdA4hKt3hKt3hKtnTUv.UQAslXuk0UXoWUFE0YQcEV77RRC8Vav8lak4Fc9vyKVMEUy.Ea0cVZtMEcgQWY9..</STATE>
     <LAYOUT>
@@ -77,13 +62,13 @@
       </OUTPUTS>
     </LAYOUT>
   </FILTER>
-  <FILTER uid="10" x="0.4161458333333333" y="0.3147540983606558" uiLastX_Normal="960"
-          uiLastY_Normal="540" uiopen_Normal="0">
+  <FILTER uid="14" x="0.4359375" y="0.2371584699453552" uiLastX_Normal="0"
+          uiLastY_Normal="24" uiopen_Normal="0">
     <PLUGIN name="AudioPluginDemo" format="Internal" category="Effect" manufacturer="JUCE"
             version="1.0.0" file="AudioPluginDemo" uniqueId="4d00ec0c" isInstrument="0"
             fileTime="0" infoUpdateTime="0" numInputs="2" numOutputs="2"
             isShell="0" uid="4d00ec0c"/>
-    <STATE>174.VMjLgTJ....O+fWarAhckI2bo8la8HRLt.iHfTlai8FYo41Y8HRUTYTK3HxO9.BOyQWXzUlO7.UPRETSfjFY8HBYkwVX4IBH1EFa0UVOh.iKvHxK9vCTAIUPMARZj0iHmEVZtIBH1EFa0UVOh.iK3jSN4jSN4biMwTCNwPiLwHxK9vScoMEcgQWYfbWZjQGZ8HxMvDiHffVYocFZz0iHyjCMh7hO77xbzEFck4C.</STATE>
+    <STATE>174.VMjLgTJ....O+fWarAhckI2bo8la8HRLt.iHfTlai8FYo41Y8HRUTYTK3HxO9.BOyQWXzUlO7.UPRETSfjFY8HBYkwVX4IBH1EFa0UVOh.iKvHxK9vCTAIUPMARZj0iHmEVZtIBH1EFa0UVOh.iK4byL3TCLvbSLzLCLx.iMyHxK9vScoMEcgQWYfbWZjQGZ8HBMv.iHffVYocFZz0iHx.CLh7hO77xbzEFck4C.</STATE>
     <LAYOUT>
       <INPUTS>
         <BUS index="0" layout="L R"/>
@@ -95,6 +80,6 @@
   </FILTER>
   <CONNECTION srcFilter="5" srcChannel="0" dstFilter="3" dstChannel="0"/>
   <CONNECTION srcFilter="5" srcChannel="1" dstFilter="3" dstChannel="1"/>
-  <CONNECTION srcFilter="10" srcChannel="0" dstFilter="5" dstChannel="0"/>
-  <CONNECTION srcFilter="10" srcChannel="1" dstFilter="5" dstChannel="1"/>
+  <CONNECTION srcFilter="14" srcChannel="0" dstFilter="5" dstChannel="0"/>
+  <CONNECTION srcFilter="14" srcChannel="1" dstFilter="5" dstChannel="1"/>
 </FILTERGRAPH>
