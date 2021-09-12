@@ -10,10 +10,20 @@
 
 #include <JuceHeader.h>
 
-struct ChainSettings {
-    float peakFreq{0}, peakGainInDecibels{0}, peakQuality{1.f};
-    float lowCutFreq{0}, highCutFreq{0};
-    int lowCutSlope{0}, highCutSlope{0};
+enum Slope
+{
+    Slope_12,
+    Slope_24,
+    Slope_36,
+    Slope_48
+};
+
+struct ChainSettings
+{
+    float peakFreq { 0 }, peakGainInDecibels { 0 }, peakQuality { 1.f };
+    float lowCutFreq { 0 }, highCutFreq { 0 };
+
+    Slope lowCutSlope { Slope::Slope_12 }, highCutSlope { Slope::Slope_12 };
 };
 
 ChainSettings getChainSettings(juce::AudioProcessorValueTreeState &apvts);
@@ -71,14 +81,73 @@ public:
 
 private:
     using Filter = juce::dsp::IIR::Filter<float>;
+
     using CutFilter = juce::dsp::ProcessorChain<Filter, Filter, Filter, Filter>;
+
     using MonoChain = juce::dsp::ProcessorChain<CutFilter, Filter, CutFilter>;
+
     MonoChain leftChain, rightChain;
-    enum ChainPositions {
+
+    enum ChainPositions
+    {
         LowCut,
         Peak,
         HighCut
     };
+
+    void updatePeakFilter(const ChainSettings& chainSettings);
+
+    using Coefficients = Filter::CoefficientsPtr;
+    static void updateCoefficients(Coefficients& old, const Coefficients& replacements);
+
+    template<typename ChainType, typename CoefficientType>
+    void updateCutFilter(ChainType& channelLowCut, const CoefficientType& cutCoefficients, const Slope&
+    lowCutSlope)
+    {
+        channelLowCut.template setBypassed<0>(true);
+        channelLowCut.template setBypassed<1>(true);
+        channelLowCut.template setBypassed<2>(true);
+        channelLowCut.template setBypassed<3>(true);
+
+        switch (lowCutSlope)
+        {
+            case Slope_12:
+            {
+                *channelLowCut.template get<0>().coefficients = *cutCoefficients[0];
+                channelLowCut.template setBypassed<0>(false);
+            }
+            case Slope_24:
+            {
+                *channelLowCut.template get<0>().coefficients = *cutCoefficients[0];
+                channelLowCut.template setBypassed<0>(false);
+                *channelLowCut.template get<1>().coefficients = *cutCoefficients[1];
+                channelLowCut.template setBypassed<1>(false);
+                break;
+            }
+            case Slope_36:
+            {
+                *channelLowCut.template get<0>().coefficients = *cutCoefficients[0];
+                channelLowCut.template setBypassed<0>(false);
+                *channelLowCut.template get<1>().coefficients = *cutCoefficients[1];
+                channelLowCut.template setBypassed<1>(false);
+                *channelLowCut.template get<2>().coefficients = *cutCoefficients[2];
+                channelLowCut.template setBypassed<2>(false);
+                break;
+            }
+            case Slope_48:
+            {
+                *channelLowCut.template get<0>().coefficients = *cutCoefficients[0];
+                channelLowCut.template setBypassed<0>(false);
+                *channelLowCut.template get<1>().coefficients = *cutCoefficients[1];
+                channelLowCut.template setBypassed<1>(false);
+                *channelLowCut.template get<2>().coefficients = *cutCoefficients[2];
+                channelLowCut.template setBypassed<2>(false);
+                *channelLowCut.template get<3>().coefficients = *cutCoefficients[3];
+                channelLowCut.template setBypassed<3>(false);
+                break;
+            }
+        }
+    }
     //==============================================================================
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (SimpleEQAudioProcessor)
 };
