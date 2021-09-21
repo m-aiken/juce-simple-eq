@@ -9,6 +9,11 @@
 #include "PluginProcessor.h"
 #include "PluginEditor.h"
 
+const auto _SSLroyalblue = juce::Colour(52u, 86u, 140u);
+const auto _SSLnavyblue = juce::Colour(8u, 21u, 43u);
+const auto _SSLskybluegrey = juce::Colour(225u, 232u, 242u);
+const auto _SSLgrey = juce::Colour(152u, 159u, 171u);
+
 void LookAndFeel::drawRotarySlider(juce::Graphics& g,
                                    int x,
                                    int y,
@@ -23,10 +28,10 @@ void LookAndFeel::drawRotarySlider(juce::Graphics& g,
 
     auto bounds = Rectangle<float>(x, y, width, height);
 
-    g.setColour(Colour(220u, 83u, 31u));
+    g.setColour(_SSLroyalblue);
     g.fillEllipse(bounds);
 
-    g.setColour(Colour(220u, 9u, 30u));
+    g.setColour(_SSLnavyblue);
     g.drawEllipse(bounds, 1.f);
 
     if (auto* rswl = dynamic_cast<RotarySliderWithLabels*>(&slider))
@@ -57,10 +62,10 @@ void LookAndFeel::drawRotarySlider(juce::Graphics& g,
         r.setSize(strWidth + 4, rswl->getTextHeight() + 2);
         r.setCentre(bounds.getCentre());
 
-        g.setColour(Colour(220u, 83u, 31u));
+        g.setColour(_SSLroyalblue);
         g.fillRect(r);
 
-        g.setColour(Colour(217u, 242u, 199u));
+        g.setColour(_SSLskybluegrey);
         g.drawFittedText(text, r.toNearestInt(), juce::Justification::centred, 1);
     }
 }
@@ -272,7 +277,7 @@ void SimpleEQAudioProcessorEditor::paint (juce::Graphics& g)
     using namespace juce;
     // (Our component is opaque, so we must completely fill the background with a solid colour)
     //g.fillAll (Colours::black);
-    g.fillAll (Colour(217u, 242u, 199u));
+    g.fillAll (_SSLgrey);
 }
 
 void SimpleEQAudioProcessorEditor::resized()
