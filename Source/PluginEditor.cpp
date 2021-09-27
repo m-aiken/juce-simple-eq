@@ -397,15 +397,22 @@ void ResponseCurveComponent::resized()
         g.setColour(gDB == 0.f ? _SSLroyalblue : Colours::lightgrey);
 
         g.drawFittedText(str, r, juce::Justification::centred, 1);
+
+        str.clear();
+        str << (gDB - 24.f);
+
+        r.setX(1);
+        textWidth = g.getCurrentFont().getStringWidth(str);
+        r.setSize(textWidth, fontHeight);
+
+        g.setColour(Colours::lightgrey);
+        g.drawFittedText(str, r, juce::Justification::centred, 1);
     }
 }
 
 juce::Rectangle<int> ResponseCurveComponent::getRenderArea()
 {
     auto bounds = getLocalBounds();
-
-//    bounds.reduce(JUCE_LIVE_CONSTANT(5),
-//                  JUCE_LIVE_CONSTANT(5));
 
     bounds.removeFromTop(12);
     bounds.removeFromBottom(2);
@@ -483,7 +490,6 @@ void SimpleEQAudioProcessorEditor::paint (juce::Graphics& g)
 {
     using namespace juce;
     // (Our component is opaque, so we must completely fill the background with a solid colour)
-    //g.fillAll (Colours::black);
     g.fillAll (_SSLgrey);
 }
 
