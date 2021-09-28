@@ -25,10 +25,10 @@ void LookAndFeel::drawRotarySlider(juce::Graphics& g,
 
     auto enabled = slider.isEnabled();
 
-    g.setColour(enabled ? _SSLroyalblue : Colours::dimgrey);
+    g.setColour(enabled ? SSLroyalblue : Colours::dimgrey);
     g.fillEllipse(bounds);
 
-    g.setColour(_SSLnavyblue);
+    g.setColour(enabled ? SSLskybluegrey : Colours::lightgrey);
     g.drawEllipse(bounds, 1.f);
 
     if (auto* rswl = dynamic_cast<RotarySliderWithLabels*>(&slider))
@@ -59,10 +59,10 @@ void LookAndFeel::drawRotarySlider(juce::Graphics& g,
         r.setSize(strWidth + 4, rswl->getTextHeight() + 2);
         r.setCentre(bounds.getCentre());
 
-        g.setColour(enabled ? _SSLroyalblue : Colours::dimgrey);
+        g.setColour(enabled ? SSLroyalblue : Colours::dimgrey);
         g.fillRect(r);
 
-        g.setColour(_SSLskybluegrey);
+        g.setColour(enabled ? SSLskybluegrey : Colours::lightgrey);
         g.drawFittedText(text, r.toNearestInt(), juce::Justification::centred, 1);
     }
 }
@@ -149,7 +149,7 @@ void RotarySliderWithLabels::paint(juce::Graphics& g)
     auto center = sliderBounds.toFloat().getCentre();
     auto radius = sliderBounds.getWidth() * 0.5f;
 
-    g.setColour(_SSLnavyblue);
+    g.setColour(SSLskybluegrey);
     g.setFont(getTextHeight());
 
     auto numChoices = labels.size();
@@ -442,7 +442,7 @@ void ResponseCurveComponent::paint (juce::Graphics& g)
     g.setColour(Colours::orange);
     g.drawRoundedRectangle(getRenderArea().toFloat(), 4.f, 1.f);
 
-    g.setColour(Colours::white);
+    g.setColour(SSLskybluegrey);
     g.strokePath(responseCurve, PathStrokeType(2.f));
 }
 
@@ -489,7 +489,7 @@ void ResponseCurveComponent::resized()
     for (auto gDB : gain)
     {
         auto y = jmap(gDB, -24.f, 24.f, float(bottom), float(top));
-        g.setColour(gDB == 0.f ? _SSLroyalblue : Colours::darkgrey);
+        g.setColour(gDB == 0.f ? SSLroyalblue : Colours::darkgrey);
         g.drawHorizontalLine(y, left, right);
     }
 
@@ -541,7 +541,7 @@ void ResponseCurveComponent::resized()
         r.setX(getWidth() - textWidth);
         r.setCentre(r.getCentreX(), y);
 
-        g.setColour(gDB == 0.f ? _SSLroyalblue : Colours::lightgrey);
+        g.setColour(gDB == 0.f ? SSLroyalblue : Colours::lightgrey);
 
         g.drawFittedText(str, r, juce::Justification::centred, 1);
 
@@ -698,7 +698,7 @@ void SimpleEQAudioProcessorEditor::paint (juce::Graphics& g)
 {
     using namespace juce;
     // (Our component is opaque, so we must completely fill the background with a solid colour)
-    g.fillAll (_SSLgrey);
+    g.fillAll(Colours::black);
 }
 
 void SimpleEQAudioProcessorEditor::resized()

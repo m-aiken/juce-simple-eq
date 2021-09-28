@@ -11,10 +11,8 @@
 #include <JuceHeader.h>
 #include "PluginProcessor.h"
 
-static auto _SSLroyalblue = juce::Colour(52u, 86u, 140u);
-static auto _SSLnavyblue = juce::Colour(8u, 21u, 43u);
-static auto _SSLskybluegrey = juce::Colour(225u, 232u, 242u);
-static auto _SSLgrey = juce::Colour(152u, 159u, 171u);
+static auto SSLroyalblue = juce::Colour(52u, 86u, 140u);
+static auto SSLskybluegrey = juce::Colour(225u, 232u, 242u);
 
 enum FFTOrder
 {
